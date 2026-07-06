@@ -39,14 +39,27 @@ export default function Home() {
           pass/fail status, per-case scores, and a side-by-side diff of baseline
           vs. current output.
         </p>
+
+        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+          <h2 className="mb-2 font-semibold text-gray-900">Get started</h2>
+          <pre className="overflow-x-auto rounded bg-gray-900 p-3 text-sm text-gray-100">
+            npx promptci init
+          </pre>
+        </div>
       </section>
 
-      <div className="mt-10">
+      <div className="mt-10 flex gap-3">
         <a
-          href="#"
+          href="https://github.com/kibin28-glitch/prompt-ci-engine"
           className="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
         >
           View the CLI on GitHub
+        </a>
+        <a
+          href="https://www.npmjs.com/package/promptci"
+          className="inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50"
+        >
+          View on npm
         </a>
       </div>
     </main>
