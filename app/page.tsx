@@ -43,7 +43,7 @@ export default function Home() {
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
           <h2 className="mb-2 font-semibold text-gray-900">Get started</h2>
           <pre className="overflow-x-auto rounded bg-gray-900 p-3 text-sm text-gray-100">
-            npx promptci init
+            npx @kibin28-glitch/promptci init
           </pre>
         </div>
       </section>
@@ -56,7 +56,7 @@ export default function Home() {
           View the CLI on GitHub
         </a>
         <a
-          href="https://www.npmjs.com/package/promptci"
+          href="https://www.npmjs.com/package/@kibin28-glitch/promptci"
           className="inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50"
         >
           View on npm
