@@ -1,65 +1,54 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="mx-auto max-w-3xl px-4 py-16">
+      <h1 className="text-3xl font-bold text-gray-900">
+        Prompt CI Engine
+      </h1>
+      <p className="mt-2 text-lg text-gray-600">
+        Regression testing for your LLM prompts.
+      </p>
+
+      <section className="mt-10 space-y-4 text-gray-700">
+        <p>
+          Prompt CI Engine is a CLI that runs your prompts against a saved
+          baseline and flags regressions before they ship. When a prompt or
+          model change degrades output quality, you find out in your terminal
+          instead of in production.
+        </p>
+
+        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+          <h2 className="mb-2 font-semibold text-gray-900">How it works</h2>
+          <ol className="list-inside list-decimal space-y-1 text-sm">
+            <li>
+              <code className="rounded bg-gray-200 px-1">promptci snapshot</code>{" "}
+              saves your current prompts as the baseline.
+            </li>
+            <li>
+              <code className="rounded bg-gray-200 px-1">promptci run</code> runs
+              your test cases and evaluates current output against the baseline.
+            </li>
+            <li>
+              <code className="rounded bg-gray-200 px-1">promptci run --upload</code>{" "}
+              publishes the results here and prints a shareable report URL.
+            </li>
+          </ol>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <p>
+          Uploaded runs get their own report page showing each prompt&apos;s
+          pass/fail status, per-case scores, and a side-by-side diff of baseline
+          vs. current output.
+        </p>
+      </section>
+
+      <div className="mt-10">
+        <a
+          href="#"
+          className="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
+        >
+          View the CLI on GitHub
+        </a>
+      </div>
+    </main>
   );
 }
