@@ -11,15 +11,21 @@ export default function TokenCard({
   const [token, setToken] = useState(initialToken);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function generateToken() {
     setLoading(true);
+    setError(null);
     try {
       const res = await fetch("/api/token", { method: "POST" });
       const data = await res.json();
       if (res.ok) {
         setToken(data.token);
+      } else {
+        setError(data.error ?? "Failed to generate token.");
       }
+    } catch {
+      setError("Failed to generate token.");
     } finally {
       setLoading(false);
     }
@@ -66,6 +72,9 @@ export default function TokenCard({
       >
         {loading ? "Generating…" : token ? "Regenerate token" : "Generate token"}
       </button>
+      {error ? (
+        <p className="mt-2 text-sm text-red-700">{error}</p>
+      ) : null}
     </div>
   );
 }
