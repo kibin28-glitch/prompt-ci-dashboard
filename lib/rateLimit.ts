@@ -1,4 +1,4 @@
-import { getSupabaseClient } from "./supabase";
+import { getSupabaseClient } from "./supabase/admin";
 
 const WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
 const MAX_RUNS_PER_WINDOW = 100;

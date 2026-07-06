@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getSupabaseClient } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase/admin";
 import type { RunResult, CaseResult } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
