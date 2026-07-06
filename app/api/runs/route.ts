@@ -34,9 +34,16 @@ export async function POST(request: NextRequest) {
   }
 
   const supabase = getSupabaseClient();
+
+  const { data: tokenRow } = await supabase
+    .from("api_tokens")
+    .select("user_id")
+    .eq("token", token)
+    .maybeSingle();
+
   const { data, error } = await supabase
     .from("runs")
-    .insert({ token, payload })
+    .insert({ token, payload, user_id: tokenRow?.user_id ?? null })
     .select("id")
     .single();
 
