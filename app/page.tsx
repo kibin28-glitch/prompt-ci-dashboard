@@ -1,6 +1,24 @@
-export default function Home() {
+import { createClient } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
+      <div className="mb-8 flex justify-end">
+        <a
+          href={user ? "/dashboard" : "/login"}
+          className="text-sm font-medium text-gray-600 hover:text-gray-900"
+        >
+          {user ? "Dashboard →" : "Sign in with GitHub →"}
+        </a>
+      </div>
+
       <h1 className="text-3xl font-bold text-gray-900">
         Prompt CI Engine
       </h1>
