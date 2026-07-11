@@ -13,8 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prompt CI Engine",
-  description: "Regression testing for your LLM prompts",
+  metadataBase: new URL("https://prompt-ci-dashboard.vercel.app"),
+  title: "Prompt CI — regression testing for LLM prompts",
+  description:
+    "Catch LLM prompt regressions before they ship. Run saved test cases against a baseline in your CLI or on every PR, and get a shareable pass/fail report.",
+  openGraph: {
+    title: "Prompt CI — regression testing for LLM prompts",
+    description:
+      "Catch LLM prompt regressions before they ship. Run saved test cases against a baseline in your CLI or on every PR, and get a shareable pass/fail report.",
+    url: "https://prompt-ci-dashboard.vercel.app",
+    siteName: "Prompt CI",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Prompt CI — regression testing for LLM prompts",
+    description:
+      "Catch LLM prompt regressions before they ship. Run saved test cases against a baseline in your CLI or on every PR, and get a shareable pass/fail report.",
+  },
 };
 
 export default function RootLayout({
