@@ -2,7 +2,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getSupabaseClient } from "@/lib/supabase/admin";
-import TokenCard from "./TokenCard";
+import TokenList from "./TokenList";
 import type { RunResult } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -19,11 +19,11 @@ export default async function DashboardPage() {
 
   const admin = getSupabaseClient();
 
-  const { data: tokenRow, error: tokenError } = await admin
+  const { data: tokenRows, error: tokenError } = await admin
     .from("api_tokens")
-    .select("token")
+    .select("id, name, token, created_at")
     .eq("user_id", user.id)
-    .maybeSingle();
+    .order("created_at", { ascending: false });
 
   const { data: runs, error: runsError } = await admin
     .from("runs")
@@ -38,10 +38,10 @@ export default async function DashboardPage() {
       <div className="mt-6">
         {tokenError ? (
           <p className="mb-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-            Couldn&apos;t load your token. Try refreshing the page.
+            Couldn&apos;t load your tokens. Try refreshing the page.
           </p>
         ) : (
-          <TokenCard initialToken={tokenRow?.token ?? null} />
+          <TokenList initialTokens={tokenRows ?? []} />
         )}
       </div>
 
