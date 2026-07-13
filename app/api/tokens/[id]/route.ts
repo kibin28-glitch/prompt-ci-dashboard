@@ -1,9 +1,12 @@
-import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getSupabaseClient } from "@/lib/supabase/admin";
+import { deleteOwnedToken } from "@/lib/tokens";
 
-export async function POST() {
+export async function DELETE(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -13,18 +16,13 @@ export async function POST() {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  const token = randomUUID();
+  const { id } = await params;
   const admin = getSupabaseClient();
-  const { error } = await admin
-    .from("api_tokens")
-    .upsert({ user_id: user.id, token }, { onConflict: "user_id" });
+  const { deleted } = await deleteOwnedToken(admin, id, user.id);
 
-  if (error) {
-    return NextResponse.json(
-      { error: "Failed to generate token" },
-      { status: 500 },
-    );
+  if (!deleted) {
+    return NextResponse.json({ error: "Token not found" }, { status: 404 });
   }
 
-  return NextResponse.json({ token });
+  return NextResponse.json({ success: true });
 }
